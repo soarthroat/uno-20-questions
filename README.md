@@ -46,7 +46,7 @@ strongest candidates there. The output was forced into a fixed format so a scrip
   arguable (for example, I said a clock is not a tool and Gemma said it is). Gemma also over-answered "yes" for
   airplane (wheels, screen, can sit on it), so its table has mistakes.
 
-To reproduce the comparison, run `kaggle/benchmark/kaggle_benchmark.ipynb` on Kaggle (GPU on, internet on).
+To reproduce the comparison, run [kaggle/benchmark/kaggle_benchmark.ipynb](kaggle/benchmark/kaggle_benchmark.ipynb) on Kaggle (GPU on, internet on).
 
 ## Parts
 
@@ -61,13 +61,16 @@ To reproduce the comparison, run `kaggle/benchmark/kaggle_benchmark.ipynb` on Ka
 - LCD: GND to GND, VCC to 5V, SDA to A4, SCL to A5.
 - Buttons: one side of each button to GND, the other to D2 (Yes), D3 (Probably), D4 (Sometimes / hold = back),
   D5 (Probably not) and D6 (No). The sketch uses the Uno's internal pull-up resistors.
-- Diagrams: `docs/wiring_diagram.png` and `docs/breadboard_layout.png`.
-  On a 4-legged push button, use two diagonally opposite legs.
+- On a 4-legged push button, use two diagonally opposite legs.
+
+![Wiring diagram](docs/wiring_diagram.png)
+
+![Breadboard layout](docs/breadboard_layout.png)
 
 ## Run it
 
 1. Install the Arduino IDE. Then install the **LiquidCrystal I2C** library by Frank de Brabander: in IDE 2.x go to Tools → Manage Libraries (in 1.x: Sketch → Include Library → Manage Libraries). I recommend searching for the author's name, "Frank de Brabander".
-2. Open `uno_guesser/uno_guesser.ino` (keep the three files in that folder together).
+2. Open [uno_guesser/uno_guesser.ino](uno_guesser/uno_guesser.ino) (keep the three files in that [folder](uno_guesser/) together).
 3. Select board **Arduino Uno**, pick your port, and Upload.
 
 Expected size: about 28.3 KB flash (88%) and 1.7 KB RAM (85%) of the Uno's 32 KB / 2 KB. The IDE will show a
@@ -81,12 +84,12 @@ pip install numpy
 python build_v3.py          # reads words_full.json, writes uno_table.h
 ```
 
-Copy the new `uno_table.h` (and, if you changed the engine settings, `guesser_core.h`) into `uno_guesser/`.
-`words_full.json` holds the AI's scores for 1,870 words and 140 questions. `kaggle/` has the notebook that
-produced the scores (needs a GPU), the word list and the question list. `uno_words.txt` lists the 1,200 words
-the game knows.
+Copy the new [uno_table.h](uno_guesser/uno_table.h) (and, if you changed the engine settings, [guesser_core.h](uno_guesser/guesser_core.h)) into [uno_guesser/](uno_guesser/).
+[words_full.json](tools/words_full.json) holds the AI's scores for 1,870 words and 140 questions. [kaggle/](kaggle/) has the notebook that
+produced the scores (needs a GPU), the word list and the question list. [uno_words.txt](uno_words.txt) lists the 1,200 words
+the game knows. The script is [tools/build_v3.py](tools/build_v3.py).
 
-Settings you may want to change in `guesser_core.h`: `MAX_TURNS` (30), `MAX_SKIPS` (3 free "sometimes"
+Settings you may want to change in [guesser_core.h](uno_guesser/guesser_core.h): `MAX_TURNS` (30), `MAX_SKIPS` (3 free "sometimes"
 answers) and `MARGIN` (how far ahead a word must be to be guessed early).
 
 ## Limitations
@@ -105,4 +108,4 @@ answers) and `MARGIN` (how far ahead a word must be to be guessed early).
 - `wordfreq` was used to estimate how common a word is.
 - Code and the abstract-word answers were written with help from Claude (Anthropic).
 
-Code in this repository is released under the MIT License (see `LICENSE`); the data files keep their original licenses.
+Code in this repository is released under the MIT License (see [LICENSE](LICENSE)); the data files keep their original licenses.
