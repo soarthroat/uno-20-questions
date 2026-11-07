@@ -84,7 +84,7 @@ pip install numpy
 python build_v3.py          # reads words_full.json, writes uno_table.h
 ```
 
-Copy the new [uno_table.h](uno_guesser/uno_table.h) (and, if you changed the engine settings, [guesser_core.h](uno_guesser/guesser_core.h)) into [uno_guesser/](uno_guesser/).
+Copy the new `uno_table.h` (and, if you changed the engine settings, `guesser_core.h`) into `uno_guesser/`.
 [words_full.json](tools/words_full.json) holds the AI's scores for 1,870 words and 140 questions. [kaggle/](kaggle/) has the notebook that
 produced the scores (needs a GPU), the word list and the question list. [uno_words.txt](uno_words.txt) lists the 1,200 words
 the game knows. The script is [tools/build_v3.py](tools/build_v3.py).
