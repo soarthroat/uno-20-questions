@@ -38,7 +38,7 @@ ones like "nothing", "the internet" and "time".
 
 ## Run it
 
-1. Install the Arduino IDE and, in Library Manager, **LiquidCrystal I2C** by Frank de Brabander.
+1. Install the Arduino IDE and, in Sketch --> Manage Library, **LiquidCrystal I2C** by Frank de Brabander. I recommend to search for the author's name instead, "Frank de Brabander."
 2. Open `uno_guesser/uno_guesser.ino` (keep the three files in that folder together).
 3. Select board **Arduino Uno**, pick your port, and Upload.
 
