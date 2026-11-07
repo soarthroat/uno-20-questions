@@ -78,19 +78,14 @@ Expected size: about 28.3 KB flash (88%) and 1.7 KB RAM (85%) of the Uno's 32 KB
 
 ## Rebuild the word list (optional)
 
-```
-cd tools
-pip install numpy
-python build_v3.py          # reads words_full.json, writes uno_table.h
-```
+You only need this if you want to change which words or questions the game knows. To just play, skip it.
 
-Copy the new `uno_table.h` (and, if you changed the engine settings, `guesser_core.h`) into `uno_guesser/`.
-[words_full.json](tools/words_full.json) holds the AI's scores for 1,870 words and 140 questions. [kaggle/](kaggle/) has the notebook that
-produced the scores (needs a GPU), the word list and the question list. [uno_words.txt](uno_words.txt) lists the 1,200 words
-the game knows. The script is [tools/build_v3.py](tools/build_v3.py).
+1. Open a terminal in the `tools` folder.
+2. Run `pip install numpy`.
+3. Run `python build_v3.py`. This creates a new `uno_table.h` in the same folder.
+4. Copy `uno_table.h` into the `uno_guesser` folder, replacing the old one, then upload the sketch to your Uno again.
 
-Settings you may want to change in [guesser_core.h](uno_guesser/guesser_core.h): `MAX_TURNS` (30), `MAX_SKIPS` (3 free "sometimes"
-answers) and `MARGIN` (how far ahead a word must be to be guessed early).
+To change the words, edit the lists near the top of `build_v3.py`. The scores come from `words_full.json`, which the script reads automatically. Everything else in the repo (`kaggle/`, `uno_words.txt`) is for reference.
 
 ## Limitations
 
