@@ -3,9 +3,10 @@
 A 20-Questions-style guessing game that runs entirely on an Arduino Uno. Think of an object or an idea, answer with five buttons and displays on a 16x2 LCD. It knows 1,200 words, including abstract
 ones like "nothing", "love" and "time".
 
-<img width="120" height="160" alt="image" src="https://github.com/user-attachments/assets/8fa2487b-8ca1-422a-bc46-e75dcadbbf5b" />
+<img width="1440" height="1920" alt="image" src="https://github.com/user-attachments/assets/ed55200c-f08b-4092-8db7-ff99b50215f8" />
 
-## How it works (no computer-science background needed)
+
+## How it works 
 
 1. **Building the knowledge (only run once, on PC).** I started with the THINGS dataset, a large collection of everyday objects used by researchers to study how the human brain recognizes and understands things. Next, I used an AI model, Gemma 4 12B (ran on Kaggle's free GPUs), to score how well each of 1,870 words fits each of
    129 yes/no questions, such as "Does it use electricity?". This process took ~6 hours to complete, which is why I avoided running it on something like Claude. Since the dataset only covers physical objects, I also wrote answers for 39 common abstract ideas. A script then compressed it down by picking the "best" 1,200 words out of 1870 words and 64 questions out of 129 to fit the Uno's memory.
