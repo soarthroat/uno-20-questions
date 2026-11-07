@@ -16,6 +16,34 @@ ones like "nothing", "love" and "time".
 3. **Guessing.** It guesses when one word clearly leads, drops each wrong guess and carries on. It gives up after
    30 turns (every question and guess uses one turn). Holding the middle button for one second undoes your last answer.
 
+## Why Gemma 4 12B?
+
+I did not just take the first model. Before scoring 1,870 words (hours of GPU time), I tested candidates on a
+small job: answer 43 yes/no questions about 12 words whose answers I had already written by hand, using one of
+five levels (yes / probably / sometimes / probably not / no). I started with small Qwen 3.5 models on my laptop
+(GTX 1650, 4 GB), but they were too slow and hot, so I moved to Kaggle's free T4 GPUs and compared the two
+strongest candidates there. The output was forced into a fixed format so a script could read it.
+
+| Measure (12 words) | Qwen 3.5 9B | Gemma 4 12B |
+|---|---|---|
+| Agreement with my answers | 94% | 95% |
+| "Yes" answers found | 82% | **92%** |
+| "Yes" answers it invented | 19 | 19 |
+| Average error (0 to 1 scale) | 0.13 | **0.10** |
+| Time per word | 12.4 s | **8.5 s** |
+| Estimated time for 2,000 words | 6.9 h | **4.7 h** |
+
+- **A trap I caught:** about 88% of answers are "no", so a model that always said "no" would score 88% on
+  agreement alone. Agreement barely separates the models (94% vs 95%), so I also tracked how many "yes" answers
+  each one found and how many it invented. The game depends on the "yes" answers.
+- **Result:** Gemma 4 12B found more of the real "yes" answers, had a lower average error and was faster, with the
+  same number of invented "yes" answers.
+- **Caveats:** Only 12 words were tested. The "right" answers are my own judgment, and several disagreements are
+  arguable (for example, I said a clock is not a tool and Gemma said it is). Gemma also over-answered "yes" for
+  airplane (wheels, screen, can sit on it), so its table has mistakes.
+
+To reproduce the comparison, run `kaggle/benchmark/kaggle_benchmark.ipynb` on Kaggle (GPU on, internet on).
+
 ## Parts
 
 | Part | Note |
