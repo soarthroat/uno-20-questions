@@ -1,19 +1,14 @@
 # 20 Questions on an Arduino Uno
 
-A 20-Questions-style guessing game that runs entirely on an Arduino Uno: no laptop, internet or app.
-Think of an object or an idea, answer with five buttons (yes / probably / sometimes / probably not / no),
-and it tries to guess what you are thinking of on a 16x2 LCD. It knows 1,200 words, including abstract
-ones like "nothing", "the internet" and "time".
+A 20-Questions-style guessing game that runs entirely on an Arduino Uno. Think of an object or an idea, answer with five buttons and displays on a 16x2 LCD. It knows 1,200 words, including abstract
+ones like "nothing", "love" and "time".
 
-<!-- Add a photo or video of the finished build here -->
+<img width="120" height="160" alt="image" src="https://github.com/user-attachments/assets/8fa2487b-8ca1-422a-bc46-e75dcadbbf5b" />
 
 ## How it works (no computer-science background needed)
 
-1. **Building the knowledge (done once, on a PC).** I started with THINGS, a research database of everyday
-   objects. An AI model (Gemma 4 12B, run on Kaggle's free GPUs) scored how well each of 1,870 words fits each of
-   129 yes/no questions, such as "Does it use electricity?". I also wrote answers for 39 abstract ideas that a
-   database of physical objects does not cover. A script then picked the 1,200 words and 64 questions that fit
-   in the Uno's memory.
+1. **Building the knowledge (only run once, on PC).** I started with the THINGS dataset, a large collection of everyday objects used by researchers to study how the human brain recognizes and understands things. Next, I used an AI model, Gemma 4 12B (ran on Kaggle's free GPUs), to score how well each of 1,870 words fits each of
+   129 yes/no questions, such as "Does it use electricity?". This process took ~6 hours to complete, which is why I avoided running it on something like Claude. Since the dataset only covers physical objects, I also wrote answers for 39 common abstract ideas. A script then compressed it down by picking the "best" 1,200 words out of 1870 words and 64 questions out of 129 to fit the Uno's memory.
 2. **Playing (on the Uno).** The game is *not* an AI. It keeps a score for every word. Each answer raises the
    score of words that fit and lowers the score of words that don't. It then asks the question that best splits
    the words still in the running, like a clever game of elimination.
